@@ -19,8 +19,13 @@ class ApplicationController < Sinatra::Base
 
   post '/customers' do 
     new_customer = Customer.create(
-
+      salesperson_id: params[:salesperson_id],
+      customer_first_name: params[:customer_first_name],
+      customer_last_name: params[:customer_last_name],
+      units_sold: params[:units_sold],
+      revenue: params[:revenue]
     )
+    new_customer.to_json
   end
 
 end
