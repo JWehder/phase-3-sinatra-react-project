@@ -28,4 +28,10 @@ class ApplicationController < Sinatra::Base
     new_customer.to_json
   end
 
+  get '/customers/:id' do
+    customer = Customer.find(params[:id])
+    customer.to_json(include: :salesperson)
+
+  end
+
 end
