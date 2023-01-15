@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   get "/salespeople/:id" do
     salesperson = Salesperson.find(params[:id])
-    salesperson.to_json(include: :customers)
+    salesperson.to_json(include: { customers: { include: :salesperson } })
   end
 
 end
