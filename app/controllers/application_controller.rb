@@ -17,4 +17,10 @@ class ApplicationController < Sinatra::Base
     salesperson.to_json(include: { customers: { include: :salesperson } })
   end
 
+  post '/customers' do 
+    new_customer = Customer.create(
+
+    )
+  end
+
 end
