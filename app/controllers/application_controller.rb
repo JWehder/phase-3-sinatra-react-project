@@ -33,6 +33,12 @@ class ApplicationController < Sinatra::Base
     customer.to_json(include: :salesperson)
   end
 
-  
+  patch '/customers/:id' do 
+    customer = Customer.find(params[:id])
+    customer.update(
+      salesperson_id: params[:salesperson_id]
+    )
+
+  end
 
 end
