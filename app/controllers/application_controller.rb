@@ -25,13 +25,14 @@ class ApplicationController < Sinatra::Base
       units_sold: params[:units_sold],
       revenue: params[:revenue]
     )
-    new_customer.to_json
+    new_customer.to_json(include: :salesperson)
   end
 
   get '/customers/:id' do
     customer = Customer.find(params[:id])
     customer.to_json(include: :salesperson)
-
   end
+
+  
 
 end
