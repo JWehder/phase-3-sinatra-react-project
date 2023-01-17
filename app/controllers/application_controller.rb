@@ -46,4 +46,21 @@ class ApplicationController < Sinatra::Base
     all_customers.to_json(include: :salesperson)
   end
 
+  delete '/customers/:id' do
+    customer = Customer.find(params[:id])
+    customer.destroy
+    all_customers = Customer.all.order(revenue: :desc)
+    all_customers.to_json(include: :salesperson)
+  end
+
+  post '/salespeople' do 
+    new_salesperson = Salesperson.create(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      quota: params[:quota]
+    )
+    new_salesperson.to_json(include: :customers)
+  end
+
+
 end
