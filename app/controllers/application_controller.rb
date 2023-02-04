@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get "/salespeople" do
     salespeople = Salesperson.all.order(:first_name)
-    salespeople.to_json(include: :customers)
+    salespeople.to_json(include: { customers: { include: :salesperson } })
   end
 
   get "/customers" do
@@ -18,14 +18,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/customers' do 
-    new_customer = Customer.create(
-      salesperson_id: params[:salesperson_id],
+    salesperson = Salesperson.find_by(id: params[:salesperson_id])
+    new_customer = salesperson.customers.create(
       customer_first_name: params[:customer_first_name],
       customer_last_name: params[:customer_last_name],
       units_sold: params[:units_sold],
       revenue: params[:revenue]
     )
-    new_customer.to_json(include: :salesperson)
+    new_customer.salesperson.to_json
   end
 
   get '/customers/:id' do
@@ -49,8 +49,10 @@ class ApplicationController < Sinatra::Base
   delete '/customers/:id' do
     customer = Customer.find(params[:id])
     customer.destroy
-    all_customers = Customer.all.order(revenue: :desc)
-    all_customers.to_json(include: :salesperson)
+    # old code:
+    # all_customers = Customer.all.order(revenue: :desc)
+    # all_customers.to_json(include: :salesperson)
+    customer.salesperson.to_json
   end
 
   post '/salespeople' do 

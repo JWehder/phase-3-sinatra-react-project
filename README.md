@@ -4,7 +4,7 @@
 
 Hello, I am assuming that you are coming here from my frontend readme where I describe my application: SalesTracker. If not, here's my description:
 
-Salestracker is a sales application consisting of a Javascript and React frontend with a Ruby and SQLite backend that tracks the amount of revenue, units sold, and customers that are created by salespeople. It allows you the ability to create, edit, and delete customers as well as the ability to create salespeople. Also, you may select a particular salesperson to see their customers as well as statistics on their sales performance.
+Salestracker is a sales application consisting of a Javascript and React frontend with a Ruby and Sinatra backend that tracks the amount of revenue, units sold, and customers that are accumulated by salespeople. It allows you the ability to create, edit, and delete customers as well as the ability to create salespeople. Also, you may select a particular salesperson to see their customers as well as statistics on their sales performance.
 
 You will need the frontend repo in order to get this project up and running. Check it out [here](https://github.com/JWehder/salestracker-app-frontend).
 
@@ -21,7 +21,7 @@ before cloning it. You can do this by using the link above or by clicking the
 "Octocat" button at the top of this page, then clicking "Fork" in the upper
 right corner of the repo page.
 
-[fork link]: https://github.com/learn-co-curriculum/phase-3-sinatra-react-project/fork
+[fork link]: https://github.com/JWehder/phase-3-sinatra-react-project/fork
 
 You can start the server with:
 
