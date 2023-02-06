@@ -3,8 +3,8 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/salespeople" do
-    salespeople = Salesperson.all.order(:first_name)
-    salespeople.to_json(include: { customers: { include: :salesperson } })
+    salespeople = Salesperson.order(:first_name)
+    salespeople.to_json(include: :customers)
   end
 
   # get "/customers" do
@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
       units_sold: params[:units_sold],
       revenue: params[:revenue]
     )
-    salesperson.to_json
+    new_customer.to_json
   end
 
   get '/customers/:id' do
@@ -45,7 +45,7 @@ class ApplicationController < Sinatra::Base
     )
     # all_customers = Customer.all.order(revenue: :desc)
     # all_customers.to_json(include: :salesperson)
-    edited_customer.salesperson.to_json
+    edited_customer.salesperson.customers.to_json
   end
 
   delete '/customers/:id' do
